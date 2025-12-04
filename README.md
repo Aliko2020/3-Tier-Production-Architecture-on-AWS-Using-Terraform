@@ -11,3 +11,7 @@ The stack includes:
 
 - Provisioning: Terraform modular infrastructure-as-code
 
+### High-Level Architecture
+
+<img width="1709" height="1067" alt="3 Tier architecture drawio" src="https://github.com/user-attachments/assets/a6c76915-083c-41c4-8a94-416e8a6535b5" />
+
