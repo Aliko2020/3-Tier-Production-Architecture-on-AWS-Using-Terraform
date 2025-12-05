@@ -1,0 +1,27 @@
+terraform/terraform.tfstate
+terraform/terraform.tfstate.backup
+terraform/*.tfstate
+terraform/*.tfstate.*
+
+# Crash logs
+terraform/crash.log
+terraform/crash.*.log
+
+# Local override files
+terraform/override.tf
+terraform/override.tf.json
+terraform/*_override.tf
+terraform/*_override.tf.json
+
+terraform/*.tfvars
+terraform/*.tfvars.json
+
+terraform/.terraform/
+terraform/.terraform/*
+
+# Terraform plan files
+terraform/*.plan
+terraform/*.out
+terraform/.terraform.lock.hcl
+
+
