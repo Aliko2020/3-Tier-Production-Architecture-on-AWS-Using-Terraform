@@ -7,6 +7,11 @@ variable "vpc_id" {
   type = string
 }
 
+variable "cidr_block" {
+  type = string
+  default = "10.0.0.0/16"
+}
+
 variable "c_block_public_az1" {
   type = string
   default = "10.0.1.0/24"

@@ -1,4 +1,23 @@
-#Public subnets (MultiAZ)
+# Nat Gateway
+resource "aws_eip" "nat" {
+  domain = "vpc"
+
+  tags = {
+    Name = "nat-eip"
+  }
+}
+
+resource "aws_nat_gateway" "nat" {
+  allocation_id = aws_eip.nat.id
+  subnet_id     = aws_subnet.public_az1.id
+
+  tags = {
+    Name = "nat-gateway"
+  }
+}
+
+
+# Public subnets accross two az
 
 resource "aws_subnet" "public_az1" {
   vpc_id     = var.vpc_id
@@ -21,9 +40,34 @@ resource "aws_subnet" "public_az2" {
     Name = "public_subnet_az2"
   }
 }
+# rt for public subnets
+resource "aws_route_table" "public_rt" {
+  vpc_id = var.vpc_id
+
+  route {
+    cidr_block = "0.0.0.0/0"
+    gateway_id = var.gateway_id
+  }
+
+  tags = { Name = "public-rt" }
+}
+
+resource "aws_route_table_association" "public_az1" {
+  subnet_id      = aws_subnet.public_az1.id
+  route_table_id = aws_route_table.public_rt.id
+}
+
+resource "aws_route_table_association" "public_az2" {
+  subnet_id      = aws_subnet.public_az2.id
+  route_table_id = aws_route_table.public_rt.id
+}
 
 
-#Private subnets for for web servers
+
+
+
+
+# Private subnets for for web servers
 
 resource "aws_subnet" "private_az1" {
   vpc_id = var.vpc_id
@@ -44,8 +88,32 @@ resource "aws_subnet" "private_az2" {
     Name = "private-app-subnet-az2"
   }
 }
+# private app rt
+resource "aws_route_table" "private_app_rt" {
+  vpc_id = var.vpc_id
 
-#Private subnets for RDS
+  route {
+    cidr_block     = "0.0.0.0/0"
+    nat_gateway_id = aws_nat_gateway.nat.id
+  }
+
+  tags = { Name = "private-app-rt" }
+}
+
+resource "aws_route_table_association" "private_app_az1" {
+  subnet_id      = aws_subnet.private_az1.id
+  route_table_id = aws_route_table.private_app_rt.id
+}
+
+resource "aws_route_table_association" "private_app_az2" {
+  subnet_id      = aws_subnet.private_az2.id
+  route_table_id = aws_route_table.private_app_rt.id
+}
+
+
+
+
+# Private subnets for RDS
 
 resource "aws_subnet" "private_rds_az1" {
   vpc_id = var.vpc_id
@@ -67,82 +135,21 @@ resource "aws_subnet" "private_rds_az2" {
   }
 }
 
-
-resource "aws_route_table" "public_rt" {
+resource "aws_route_table" "private_db_rt" {
   vpc_id = var.vpc_id
 
-  route {
-    cidr_block = "0.0.0.0/0"
-    gateway_id = var.gateway_id
-  }
-
   tags = {
-    Name = "public-route-table a"
-  }
-}
-
-resource "aws_route_table_association" "public_az1" {
-  subnet_id = aws_subnet.public_az1.id
-  route_table_id = aws_route_table.public_rt.id
-}
-
-resource "aws_route_table_association" "public_az2" {
-  subnet_id = aws_subnet.public_az2.id
-  route_table_id = aws_route_table.public_rt.id
-}
-
-
-#Nat Gateway
-
-resource "aws_eip" "nat" {
-  domain = "vpc"
-
-  tags = {
-    Name = "nat-eip"
-  }
-}
-
-resource "aws_nat_gateway" "nat" {
-  allocation_id = aws_eip.nat.id
-  subnet_id     = aws_subnet.public_az1.id
-
-  tags = {
-    Name = "nat-gateway"
+    Name = "private_db_rt"
   }
 }
 
 
-#Private route
-
-resource "aws_route_table" "private" {
-  vpc_id = var.vpc_id
-
-  route {
-    cidr_block     = "0.0.0.0/0"
-    nat_gateway_id = aws_nat_gateway.nat.id
-  }
-
-  tags = {
-    Name = "private-rt"
-  }
+resource "aws_route_table_association" "private_db_rt_asso1" {
+  subnet_id = aws_subnet.private_rds_az1.id
+  route_table_id = aws_route_table.private_db_rt.id
 }
 
-resource "aws_route_table_association" "private_app_az1" {
-  subnet_id      = aws_subnet.private_az1.id
-  route_table_id = aws_route_table.private.id
-}
-
-resource "aws_route_table_association" "private_app_az2" {
-  subnet_id      = aws_subnet.private_az2.id
-  route_table_id = aws_route_table.private.id
-}
-
-resource "aws_route_table_association" "private_db_az1" {
-  subnet_id      = aws_subnet.private_rds_az1.id
-  route_table_id = aws_route_table.private.id
-}
-
-resource "aws_route_table_association" "private_db_az2" {
-  subnet_id      = aws_subnet.private_rds_az2.id
-  route_table_id = aws_route_table.private.id
+resource "aws_route_table_association" "private_db_rt_asso2" {
+  subnet_id = aws_subnet.private_rds_az2.id
+  route_table_id = aws_route_table.private_db_rt.id
 }

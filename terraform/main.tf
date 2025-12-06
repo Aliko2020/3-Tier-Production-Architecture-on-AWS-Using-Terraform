@@ -18,9 +18,9 @@ module "subnets" {
   gateway_id = module.vpc.main_igw_id
 }
 
-module "alb" {
-  source = "./modules/alb"
-  alb_sg = module.security_groups.app_alb_sg.id
-  public_az1_id = module.subnets.public_az1_id
-  public_az2_id = module.subnets.public_az2_id
-}
+# module "alb" {
+#   source = "./modules/alb"
+#   alb_sg = module.security_groups.app_alb_sg.id
+#   public_az1_id = module.subnets.public_az1_id
+#   public_az2_id = module.subnets.public_az2_id
+# }
