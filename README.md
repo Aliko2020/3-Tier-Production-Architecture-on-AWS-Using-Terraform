@@ -27,13 +27,13 @@ The stack includes:
 
 Public Route Table
 - Used by both public subnets.
-- - 0.0.0.0/0 → Internet Gateway
+- 0.0.0.0/0 → Internet Gateway
 Allows inbound/outbound internet connectivity.
 
 
 Private App Route Table
 - Used by both private app subnets.
-- -0.0.0.0/0 → NAT Gateway
+- 0.0.0.0/0 → NAT Gateway
 Provides outbound-only internet access for EC2 instances.
 
 Private DB Route Table
@@ -64,3 +64,7 @@ Security Best Practices
 - Public subnets: ALB, NAT Gateway
 - Private app subnets: EC2 backend
 - Private DB subnets: RDS
+- (No internet routes)
+DB subnets are fully isolated as recommended for RDS/Aurora.
+
+<img width="1631" height="595" alt="Screenshot from 2025-12-06 15-41-48" src="https://github.com/user-attachments/assets/16dc9f8e-9b26-4079-b5ed-9df8ecf30009" />
