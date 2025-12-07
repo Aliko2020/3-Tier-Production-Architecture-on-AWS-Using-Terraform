@@ -40,3 +40,27 @@ Private DB Route Table
 - Used by private DB subnets.
 - - (No internet routes)
 DB subnets are fully isolated as recommended for RDS/Aurora.
+
+
+### Deployment Notes
+
+- EC2 instances are launched in private subnets, and access is typically via SSM Session Manager.
+- user-data scripts automatically install Node.js, Git, and environment configuration on app EC2 instances.
+- The backend .env file contains RDS connection info (DB_HOST, DB_PORT, DB_USER, DB_PASS).
+- Auto Scaling ensures high availability across two AZs.
+
+---
+
+Security Best Practices
+
+- DB subnets are fully private, no public access.
+- App subnets are private, routed via NAT for outbound traffic only.
+- ALB handles inbound traffic securely; security groups enforce tier-to-tier access.
+
+---
+
+[CloudFront] → [ALB] → [EC2 Auto Scaling] → [RDS PostgreSQL]
+
+- Public subnets: ALB, NAT Gateway
+- Private app subnets: EC2 backend
+- Private DB subnets: RDS
