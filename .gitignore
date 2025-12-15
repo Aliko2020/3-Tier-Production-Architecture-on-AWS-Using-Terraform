@@ -3,6 +3,9 @@ terraform/terraform.tfstate.backup
 terraform/*.tfstate
 terraform/*.tfstate.*
 
+backend/node_modules
+frontend/node_modules
+
 # Crash logs
 terraform/crash.log
 terraform/crash.*.log
