@@ -46,7 +46,7 @@ module "app_ec2" {
   source = "./modules/ec2"
 
   app_ami       = "ami-0ecb62995f68bb549"
-  instance_type = "t3.micro"
+  instance_type = "t2.micro"
   vpc_id        = module.vpc.vpc_id
 
   private_subnet_az1 = module.subnets.public_az1_id
