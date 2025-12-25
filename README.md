@@ -11,7 +11,7 @@ The stack includes:
 
 - Provisioning: Terraform modular infrastructure-as-code
 
-#### Architecture
+### Architecture
 
 <img width="1709" height="1067" alt="3 Tier architecture drawio" src="https://github.com/user-attachments/assets/a6c76915-083c-41c4-8a94-416e8a6535b5" />
 
@@ -72,4 +72,36 @@ Security Best Practices
 - (No internet routes)
 DB subnets are fully isolated as recommended for RDS/Aurora.
 
+### Application Tier: EC2 Deployment
 
+The Application Tier consists of Node.js backend servers running on EC2 instances managed by Auto Scaling Groups (ASG) and fronted by an Application Load Balancer (ALB). Terraform provisions these instances in private subnets for security, with access via SSM Session Manager.
+
+<img width="1848" height="888" alt="Screenshot from 2025-12-25 00-46-13" src="https://github.com/user-attachments/assets/ee47838b-c111-450b-bbd8-724f5c2a6ffe" />
+
+
+#### EC2 Instance Details
+
+- AMI: Ubuntu 24.04 (ami-0ecb62995f68bb549)
+- Instance Type: t2.micro (configurable via Terraform variable instance_type)
+- IAM Role: EC2SessionManagerRole with the following policies:
+- AmazonSSMManagedInstanceCore → enables Session Manager access
+- User Data: Installs Node.js, Git, and required dependencies,Configures environment variables (.env) for RDS connection
+
+#### Auto Scaling & Load Balancing
+
+-Auto Scaling Group (ASG): Min: 2, Max: 4, Desired: 2 instances
+- Spans two private subnets across different Availability Zones
+- Health checks integrated with the ALB (ELB type)
+
+#### Application Load Balancer (ALB):
+
+- Deployed in public subnets
+- Routes HTTP/HTTPS traffic to EC2 instances in private subnets
+- Security groups restrict access:
+- ALB SG: allows HTTP/HTTPS from anywhere
+- App SG: allows only traffic from ALB
+
+#### Session Manager Access
+
+- EC2 instances do not require public IPs.
+- Access via AWS Systems Manager Session Manager:
