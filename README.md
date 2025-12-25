@@ -105,3 +105,5 @@ The Application Tier consists of Node.js backend servers running on EC2 instance
 
 - EC2 instances do not require public IPs.
 - Access via AWS Systems Manager Session Manager:
+
+<img width="1849" height="968" alt="Screenshot from 2025-12-25 03-45-02" src="https://github.com/user-attachments/assets/c3cab041-edb2-4c5b-8e8c-3e8745259d1e" />
