@@ -1,11 +1,52 @@
+
+# IAM Role for EC2 / SSM
+resource "aws_iam_role" "ec2_ssm_role" {
+  name = "EC2SessionManagerRole-prod"
+
+  assume_role_policy = jsonencode({
+    Version = "2012-10-17"
+    Statement = [
+      {
+        Action = "sts:AssumeRole"
+        Effect = "Allow"
+        Principal = {
+          Service = "ec2.amazonaws.com"
+        }
+      }
+    ]
+  })
+}
+
+# Attach policies
+resource "aws_iam_role_policy_attachment" "ssm_attach" {
+  role       = aws_iam_role.ec2_ssm_role.name
+  policy_arn = "arn:aws:iam::aws:policy/AmazonSSMManagedInstanceCore"
+}
+
+resource "aws_iam_role_policy_attachment" "cw_attach" {
+  role       = aws_iam_role.ec2_ssm_role.name
+  policy_arn = "arn:aws:iam::aws:policy/CloudWatchAgentServerPolicy"
+}
+
+# Instance Profile
+resource "aws_iam_instance_profile" "ec2_ssm_profile" {
+  name = "EC2SessionManagerInstanceProfile"
+  role = aws_iam_role.ec2_ssm_role.name
+}
+
+
 # Launch Template
 resource "aws_launch_template" "app_lt" {
   name_prefix   = "app-lt"
   image_id      = var.app_ami
   instance_type = var.instance_type
 
+  iam_instance_profile {
+    name = aws_iam_instance_profile.ec2_ssm_profile.name
+  }
+
   network_interfaces {
-    security_groups = var.app_tier_sg
+    security_groups           = var.app_tier_sg
     associate_public_ip_address = false
   }
 
@@ -13,7 +54,7 @@ resource "aws_launch_template" "app_lt" {
 }
 
 
-# Target group
+# Target Group
 resource "aws_lb_target_group" "app_tg" {
   name     = "app-tg"
   port     = 80
@@ -29,7 +70,7 @@ resource "aws_lb_target_group" "app_tg" {
 }
 
 
-#Auto scaling across 2AZ
+# Auto Scaling Group
 resource "aws_autoscaling_group" "app_asg" {
   name                      = "app-asg"
   max_size                  = 4
@@ -50,7 +91,7 @@ resource "aws_autoscaling_group" "app_asg" {
     version = aws_launch_template.app_lt.latest_version
   }
 
-  health_check_type = "ELB"
+  health_check_type         = "ELB"
   health_check_grace_period = 120
 
   tag {
