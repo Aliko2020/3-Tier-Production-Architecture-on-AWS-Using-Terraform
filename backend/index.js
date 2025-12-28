@@ -9,8 +9,8 @@ dotenv.config();
 const app = express();
 
 app.use(cors({
-  origin: "http://localhost:5173", 
-  credentials: true, 
+  origin: true,
+  credentials: true,
 }));
 
 app.use(express.json());
@@ -29,7 +29,7 @@ console.log(process.env.DB_USER);
 
 pool.connect()
   .then(() => {
-    app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+    app.listen(PORT,"0.0.0.0", () => console.log(`Server running on port ${PORT}`));
   })
   .catch((err) => {
     console.error("Failed to connect to database, server not started:", err);
