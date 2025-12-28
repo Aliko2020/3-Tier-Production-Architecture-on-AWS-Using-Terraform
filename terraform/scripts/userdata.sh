@@ -16,6 +16,13 @@ apt install -y nodejs npm
 node -v
 npm -v
 
+# Install Postgresql
+sudo apt install postgresql -y
+
+sudo systemctl start postgresql
+sudo systemctl enable postgresql
+sudo systemctl status postgresql
+
 # Clone repo
 cd /home/ubuntu
 git clone https://github.com/Aliko2020/3-Tier-Production-Architecture-on-AWS-Using-Terraform.git backend
@@ -33,17 +40,17 @@ npm install
 # Create environment file (variables will expand)
 cat <<EOT > .env
 PORT=3000
-DB_HOST=$db_endpoint
-DB_NAME=$db_name
-DB_USER=$db_user
-DB_PASS=$db_pass
+DB_HOST=ecommercedb.csx62e0266by.us-east-1.rds.amazonaws.com
+DB_NAME=postgres
+DB_USER=amos
+DB_PASSWORD=Aliko1234
 EOT
 
 # Install PM2 as ubuntu user
 sudo npm install -g pm2
 
 # Start backend with PM2
-pm2 start server.js --name backend
+pm2 start index.js --name backend
 pm2 save
 pm2 startup systemd -u ubuntu --hp /home/ubuntu
 EOF

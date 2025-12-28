@@ -21,3 +21,7 @@ output "db_port" {
   description = "The port the RDS instance is listening on"
   value       = aws_db_instance.ecommerce.port
 }
+
+output "db_password" {
+  value      = aws_db_instance.ecommerce.password
+}
