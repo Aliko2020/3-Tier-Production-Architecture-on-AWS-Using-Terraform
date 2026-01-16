@@ -1,5 +1,5 @@
-import ProductCard from "../components/ProductCard";
-import desktops from "../data/desktops"; 
+import ProductCard from "../../components/ProductCard";
+import desktops from "../../data/desktops"; 
 
 const Desktops = () => {
   const displayedDesktops = desktops.slice(0, 5);

@@ -1,6 +1,6 @@
 import { useState } from "react";
-import ProductCard from "../components/ProductCard";
-import laptops from "../data/laptops";
+import ProductCard from "../../components/ProductCard";
+import laptops from "../../data/laptops";
 
 const Laptops = () => {
   const [selectedBrand, setSelectedBrand] = useState("All");

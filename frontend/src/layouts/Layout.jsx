@@ -1,8 +1,8 @@
-import Footer from "./Footer";
-import { Navbar } from "./Navbar";
+import Footer from "../components/footer/Footer";
+import Navbar  from "../components/navbar/Navbar";
 import { Outlet } from "react-router-dom";
 
-const Layout = ({ children }) => {
+const Layout = () => {
   return (
     <div className="flex flex-col min-h-screen">
       <header className="">

@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useParams, useLocation } from "react-router-dom";
-import products from "../data/newproducts";
+import products from "../../data/newproducts";
 import { useNavigate } from "react-router-dom";
 
 
