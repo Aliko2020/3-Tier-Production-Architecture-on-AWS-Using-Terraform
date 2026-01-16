@@ -1,5 +1,5 @@
-import ProductCard from "../components/ProductCard";
-import accessories from "../data/accessories";
+import ProductCard from "../../components/ProductCard";
+import accessories from "../../data/accessories";
 
 const Accessories = () => {
   const displayedAccessories = accessories.slice(0, 8);
