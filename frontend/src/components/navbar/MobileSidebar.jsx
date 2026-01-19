@@ -2,9 +2,10 @@ import { NavLink, useNavigate } from "react-router-dom";
 import { X } from "lucide-react";
 
 const MobileSidebar = ({ navLinks, menuOpen, setMenuOpen }) => {
-  const navigate = useNavigate();
-  const isLoggedIn = !!localStorage.getItem("token");
 
+  const isLoggedIn = !!localStorage.getItem("token");
+  const navigate = useNavigate();
+  
   const handleLogout = () => {
     localStorage.removeItem("token");
     navigate("/login");
@@ -12,13 +13,13 @@ const MobileSidebar = ({ navLinks, menuOpen, setMenuOpen }) => {
 
   return (
     <div
-      className={`fixed top-0 left-0 h-full w-64 bg-[#0d0f16] text-white transform
+      className={`fixed top-0 left-0 h-full w-64 bg-white transform
         ${menuOpen ? "translate-x-0" : "-translate-x-full"}
         transition-transform duration-300 ease-in-out z-50`}
     >
       
-      <div className="flex justify-between items-center px-4 py-4 border-b border-green-700 mt-5">
-        <h2 className="text-lg font-semibold">Menu</h2>
+      <div className="flex justify-between items-center px-4 py-1 border-b mt-5">
+        <h2 className="text-lg text-gray-700 font-semibold">Menu</h2>
         <button onClick={() => setMenuOpen(false)}>
           <X size={22} />
         </button>
@@ -34,7 +35,7 @@ const MobileSidebar = ({ navLinks, menuOpen, setMenuOpen }) => {
             onClick={() => setMenuOpen(false)}
             className={({ isActive }) =>
               `font-medium transition-colors duration-200 ${
-                isActive ? "text-green-500" : "hover:text-red-400"
+                isActive ? "text-orange-500" : "hover:text-orange-500"
               }`
             }
           >

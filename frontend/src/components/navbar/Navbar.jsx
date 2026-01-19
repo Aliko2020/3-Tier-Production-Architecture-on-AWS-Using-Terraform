@@ -7,7 +7,7 @@ const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const navigate = useNavigate();
 
-  const isLoggedIn = !!localStorage.getItem("token");
+  const isLoggedIn = true
 
   const navLinks = [
     { name: "Home", path: "/" },
@@ -18,9 +18,19 @@ const Navbar = () => {
   ];
 
   return (
-    <nav className="border-b bg-white">
-      <div className="flex justify-between items-center mx-auto w-full max-w-screen-xl px-4 sm:px-6 lg:px-8 py-4">
-        {/* Left: Menu button (mobile) */}
+    <nav className="border-b">
+      <div className="flex justify-between items-center mx-auto w-full max-w-screen-xl px-0 sm:px-6 lg:px-4 py-4">
+        
+        <div className="hidden lg:block cursor-pointer">
+          <Link to="/">
+            <img
+              className="max-w-20"
+              src="/images/logo.png"
+              alt="computer and accessories logo png image"
+              loading="lazy"
+            />
+          </Link>
+        </div>
         <div className="flex items-center space-x-4">
           <button
             className="lg:hidden text-gray-800"
@@ -40,8 +50,8 @@ const Navbar = () => {
               className={({ isActive }) =>
                 `relative font-medium transition-colors duration-200 ${
                   isActive
-                    ? "text-red-600 after:absolute after:left-0 after:-bottom-1 after:h-0.5 after:w-full after:bg-red-600"
-                    : "text-gray-700 hover:text-red-600"
+                    ? "text-orange-500 after:absolute after:left-0 after:-bottom-1 after:h-0.5 after:w-full after:bg-orange-500"
+                    : "text-gray-700 hover:text-orange-500"
                 }`
               }
             >
@@ -53,14 +63,14 @@ const Navbar = () => {
         {/* Right: Cart + Auth Links */}
         <div className="flex items-center space-x-6">
           {/* Cart */}
-          <div className="relative lg:hidden">
+          <div className="relative cursor-pointer">
             <ShoppingCart className="w-6 h-6 text-black" />
             <span className="absolute -top-2 -right-3 bg-orange-500 text-white text-xs font-bold rounded-full w-5 h-5 flex items-center justify-center">
               0
             </span>
           </div>
 
-          {/* Auth Links */}
+          
           {!isLoggedIn ? (
             <div className="hidden lg:flex space-x-4">
               <Link to="/login" className="flex items-center font-medium">
@@ -77,7 +87,7 @@ const Navbar = () => {
             <div className="hidden lg:flex items-center space-x-4">
               <button
                 onClick={() => navigate("/userdashboard")}
-                className="flex items-center text-gray-500"
+                className="flex items-center"
                 title="User Dashboard"
               >
                 <User size={22} />
