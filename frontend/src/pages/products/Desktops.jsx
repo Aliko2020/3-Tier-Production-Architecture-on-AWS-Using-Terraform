@@ -5,12 +5,12 @@ const Desktops = () => {
   const displayedDesktops = desktops.slice(0, 5);
 
   return (
-    <section className="px-5 bg-white">
+    <section className="px-5">
       <div className="max-w-7xl mx-auto">
         
         <div className="mb-8">
-          <h1 className="text-lg font-bold text-gray-800">
-            DESKTOP COLLECTION
+          <h1 className="text-gray-500 font-semibold">
+            Desktops
           </h1>
         </div>
 

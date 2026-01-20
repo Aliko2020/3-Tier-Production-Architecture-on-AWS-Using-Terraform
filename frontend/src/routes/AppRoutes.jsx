@@ -1,14 +1,19 @@
 import { Routes, Route } from "react-router-dom";
+import { lazy, Suspense } from "react";
 
 import Layout from "@/layouts/Layout";
 import ProtectedRoute from "@/components/common/ProtectedRoute";
+import Spinner from "@/components/common/Spinner"; // use spinner here
 
-import Home from "@/pages/home/Home";
-import ProductDetail from "@/pages/products/ProductDetail";
-import Laptops from "@/pages/products/Laptops";
-import Desktops from "@/pages/products/Desktops";
-import Accessories from "@/pages/products/Accessories";
-import Discount from "@/pages/home/Discount";
+/* Lazy-loaded pages */
+const Home = lazy(() => import("@/pages/home/Home"));
+const Discount = lazy(() => import("@/pages/home/Discount"));
+const Laptops = lazy(() => import("@/pages/products/Laptops"));
+const Desktops = lazy(() => import("@/pages/products/Desktops"));
+const Accessories = lazy(() => import("@/pages/products/Accessories"));
+const ProductDetail = lazy(() => import("@/pages/products/ProductDetail"));
+
+/* Regular imports */
 import Login from "@/pages/auth/Login";
 import SignUp from "@/pages/auth/SignUp";
 import UserDashboard from "@/pages/dashboards/UserDashboard";
@@ -16,41 +21,38 @@ import Checkout from "@/pages/checkout/Checkout";
 
 const AppRoutes = () => {
   return (
-    <Routes>
-      <Route path="/" element={<Layout />}>
-        <Route index element={<Home />} />
+    <Suspense fallback={<Spinner />}>
+      <Routes>
+        <Route path="/" element={<Layout />}>
+          <Route index element={<Home />} />
+          <Route path="login" element={<Login />} />
+          <Route path="register" element={<SignUp />} />
 
-        {/* Auth */}
-        <Route path="login" element={<Login />} />
-        <Route path="register" element={<SignUp />} />
+          <Route path="product/:id" element={<ProductDetail />} />
+          <Route path="laptops" element={<Laptops />} />
+          <Route path="desktops" element={<Desktops />} />
+          <Route path="accessories" element={<Accessories />} />
+          <Route path="discounts" element={<Discount />} />
 
-        {/* Products */}
-        <Route path="product/:id" element={<ProductDetail />} />
-        <Route path="laptops" element={<Laptops />} />
-        <Route path="desktops" element={<Desktops />} />
-        <Route path="accessories" element={<Accessories />} />
-        <Route path="discounts" element={<Discount />} />
-
-        {/* Protected */}
-        <Route
-          path="userdashboard"
-          element={
-            <ProtectedRoute>
-              <UserDashboard />
-            </ProtectedRoute>
-          }
-        />
-
-        <Route
-          path="checkout"
-          element={
-            <ProtectedRoute>
-              <Checkout />
-            </ProtectedRoute>
-          }
-        />
-      </Route>
-    </Routes>
+          <Route
+            path="userdashboard"
+            element={
+              <ProtectedRoute>
+                <UserDashboard />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="checkout"
+            element={
+              <ProtectedRoute>
+                <Checkout />
+              </ProtectedRoute>
+            }
+          />
+        </Route>
+      </Routes>
+    </Suspense>
   );
 };
 
