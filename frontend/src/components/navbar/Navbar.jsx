@@ -7,7 +7,7 @@ const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const navigate = useNavigate();
 
-  const isLoggedIn = true
+  const isLoggedIn = true;
 
   const navLinks = [
     { name: "Home", path: "/" },
@@ -20,12 +20,11 @@ const Navbar = () => {
   return (
     <nav className="border-b">
       <div className="flex justify-between items-center mx-auto w-full max-w-screen-xl px-0 sm:px-6 lg:px-4 py-4">
-        
         <div className="hidden lg:block cursor-pointer">
           <Link to="/">
             <img
               className="max-w-20"
-              src="/images/logo.png"
+              src="/images/logo.webp"
               alt="computer and accessories logo png image"
               loading="lazy"
             />
@@ -40,7 +39,6 @@ const Navbar = () => {
           </button>
         </div>
 
-        {/* Desktop Links */}
         <div className="hidden lg:flex space-x-8">
           {navLinks.map(({ name, path }) => (
             <NavLink
@@ -60,9 +58,7 @@ const Navbar = () => {
           ))}
         </div>
 
-        {/* Right: Cart + Auth Links */}
         <div className="flex items-center space-x-6">
-          {/* Cart */}
           <div className="relative cursor-pointer">
             <ShoppingCart className="w-6 h-6 text-black" />
             <span className="absolute -top-2 -right-3 bg-orange-500 text-white text-xs font-bold rounded-full w-5 h-5 flex items-center justify-center">
@@ -70,7 +66,6 @@ const Navbar = () => {
             </span>
           </div>
 
-          
           {!isLoggedIn ? (
             <div className="hidden lg:flex space-x-4">
               <Link to="/login" className="flex items-center font-medium">

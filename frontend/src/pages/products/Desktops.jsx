@@ -1,4 +1,4 @@
-import ProductCard from "../../components/ProductCard";
+import ProductCard from "../../components/productsCategory/ProductCard";
 import desktops from "../../data/desktops"; 
 
 const Desktops = () => {

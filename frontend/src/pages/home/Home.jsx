@@ -1,15 +1,17 @@
-import BrandNewProducts from "../../components/BrandNew"
-import DiscountSale from "@/components/common/DiscountSale"
-import { CategorySection } from "../../components/CategorySection"
+import SearchBar from "@/components/search/SearchBar";
+import CategorySection from "@/components/productsCategory/CategorySection";
+import NewProducts from "@/components/productsCategory/NewProducts";
+import DiscountSale from "@/components/common/DiscountSale";
 
 const Home = () => {
   return (
-    <div>
-        <CategorySection />
-        <BrandNewProducts />
-        <DiscountSale />
-    </div>
-  )
-}
+    <main className="flex flex-col gap-8">
+      <SearchBar />
+      <CategorySection />
+      <NewProducts />
+      <DiscountSale />
+    </main>
+  );
+};
 
-export default Home
+export default Home;
