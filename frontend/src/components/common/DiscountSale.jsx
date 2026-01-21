@@ -35,7 +35,6 @@ export default function DiscountSale() {
 
   return (
     <div className="flex flex-col md:flex-row bg-gray-100 rounded-lg overflow-hidden">
-      {/* LEFT SECTION */}
       <div className="flex flex-col items-center justify-center w-full md:w-1/2 p-10 text-center bg-gray-200">
         <div className="flex gap-4 mb-6">
           {Object.entries(timeLeft).map(([label, value]) => (
@@ -61,10 +60,9 @@ export default function DiscountSale() {
         </button>
       </div>
 
-      {/* RIGHT SECTION */}
       <div className="w-full md:w-1/2 bg-gray-200 flex items-center justify-center">
         <img
-          src="/images/discont.png"
+          src="/images/discont.webp"
           alt="Laptop"
           className="w-4/5 max-w-md object-cover mt-2"
         />

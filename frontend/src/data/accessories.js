@@ -4,8 +4,8 @@ const accessories = [
     name: "Logitech Wireless Mouse",
     price: 60,
     brand: "Logitech",
-    image: "/images/mouse.png",
-    images: ["mouse.png"],
+    image: "/images/mouse.webp",
+    images: ["mouse.webp"],
     color: [
       { name: "Black", value: "black" },
       { name: "White", value: "white" },

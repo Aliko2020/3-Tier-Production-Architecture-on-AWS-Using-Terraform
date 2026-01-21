@@ -1,26 +1,26 @@
 import { useState } from "react";
-import ProductCard from "../../components/ProductCard";
+import ProductCard from "../../components/productsCategory/ProductCard";
 import laptops from "../../data/laptops";
 
 const Laptops = () => {
   const [selectedBrand, setSelectedBrand] = useState("All");
 
-  const brands = ["All", ...new Set(laptops.map((l) => l.brand).filter(Boolean))];
+  const brands = [
+    "All",
+    ...new Set(laptops.map((l) => l.brand).filter(Boolean)),
+  ];
 
   const filteredLaptops =
     selectedBrand === "All"
       ? laptops
       : laptops.filter(
-          (l) => l.brand?.toLowerCase() === selectedBrand.toLowerCase()
+          (l) => l.brand?.toLowerCase() === selectedBrand.toLowerCase(),
         );
 
   return (
     <section className="px-5 bg-white">
       <div className="max-w-7xl mx-auto">
-        {/* Header */}
         <div className="mb-8 flex flex-col sm:flex-row sm:items-center sm:justify-between">
-          
-          {/* Brand Filter Dropdown */}
           <div className="flex items-center gap-3">
             <label
               htmlFor="brandFilter"
@@ -43,7 +43,6 @@ const Laptops = () => {
           </div>
         </div>
 
-        {/* Laptop Grid */}
         <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-5">
           {filteredLaptops.length > 0 ? (
             filteredLaptops.map((laptop) => (

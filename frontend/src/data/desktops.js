@@ -4,8 +4,8 @@ const desktops = [
     name: "HP Pavilion Desktop",
     price: 3500,
     brand: "HP",
-    image: "/images/desktop.png",
-    images: ["/images/desktop.png"],
+    image: "/images/desktop.webp",
+    images: ["/images/desktop.webp"],
     color: [{ name: "Black", value: "black" }],
     specs: [
       { label: "Base Model", cpu: "Intel i5, 8GB RAM, 1TB HDD" },
