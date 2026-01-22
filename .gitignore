@@ -4,6 +4,7 @@ terraform/*.tfstate
 terraform/*.tfstate.*
 
 backend/node_modules
+backend/.env
 frontend/node_modules
 
 # Crash logs

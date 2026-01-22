@@ -11,9 +11,9 @@ const SearchBar = () => {
   };
 
   return (
-    <section className="border text-gray-400 py-14 px-4 rounded-b-2xl">
+    <section className="border text-[#b3b1b1] py-14 px-4 rounded-b-2xl">
       <div className="max-w-4xl mx-auto text-center">
-        <h2 className="text-xl md:text-2xl font-semibold mb-6">
+        <h2 className="text-xl font-semibold mb-6">
           What are you looking for?
         </h2>
 
@@ -33,7 +33,7 @@ const SearchBar = () => {
 
             <button
               type="submit"
-              className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-green-600"
+              className="absolute right-3 top-1/2 -translate-y-1/2 text-[#DBDBDB]"
             >
               <Search size={18} />
             </button>

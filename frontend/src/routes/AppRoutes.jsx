@@ -3,17 +3,16 @@ import { lazy, Suspense } from "react";
 
 import Layout from "@/layouts/Layout";
 import ProtectedRoute from "@/components/common/ProtectedRoute";
-import Spinner from "@/components/common/Spinner"; // use spinner here
+import Spinner from "@/components/common/Spinner"; 
 
 /* Lazy-loaded pages */
 const Home = lazy(() => import("@/pages/home/Home"));
-const Discount = lazy(() => import("@/pages/home/Discount"));
+const Discount = lazy(() => import("@/pages/Discount"));
 const Laptops = lazy(() => import("@/pages/products/Laptops"));
 const Desktops = lazy(() => import("@/pages/products/Desktops"));
 const Accessories = lazy(() => import("@/pages/products/Accessories"));
 const ProductDetail = lazy(() => import("@/pages/products/ProductDetail"));
 
-/* Regular imports */
 import Login from "@/pages/auth/Login";
 import SignUp from "@/pages/auth/SignUp";
 import UserDashboard from "@/pages/dashboards/UserDashboard";
