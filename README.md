@@ -157,8 +157,6 @@ Apply complete! Resources: 32 added, 0 changed, 0 destroyed.
 
 ## Architecture
 
-<img width="1709" height="1067" alt="3 Tier architecture drawio" src="https://github.com/user-attachments/assets/a6c76915-083c-41c4-8a94-416e8a6535b5" />
-
 ### Network Setup(VPC,SUBNETS,ROUTE TABLES)
 
 - VPC Custom VPC: deployed in two AZs
