@@ -55,8 +55,7 @@ VITE v7.2.4  ready in 5145 ms
 Local: http://localhost:5173/
 ```
 
-<img width="1903" height="936" alt="localhost" src="https://github.com/user-attachments/assets/eee6ccc0-a9bc-4d3e-8e89-5fc529ab34f1" />
-
+<img width="1903" height="936" alt="Screenshot from 2026-01-25 10-34-54" src="https://github.com/user-attachments/assets/86d80b46-48fc-430b-aa5f-cfb4cc1ca6de" />
 
 
 
