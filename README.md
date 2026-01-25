@@ -1,7 +1,12 @@
+<img width="1709" height="1067" alt="3 Tier architecture drawio" src="https://github.com/user-attachments/assets/a6c76915-083c-41c4-8a94-416e8a6535b5" />
+
+
 # 3-Tier-Production-Architecture-on-AWS-Using-Terraform
+
 
 This repo describes a production-ready, enterprise-grade, secure deployment of a 3-tier e-commerce application on AWS using Terraform.
 The stack includes:
+
 
 - Presentation Tier: React Frontend → S3 + CloudFront
 
@@ -11,7 +16,147 @@ The stack includes:
 
 - Provisioning: Terraform modular infrastructure-as-code
 
-### Architecture
+  
+
+## 💡 Why This Stack
+
+This repository demonstrates a **production-ready, secure 3-tier architecture on AWS**. Each tier and tool was chosen for scalability, security, and maintainability:
+
+- **Frontend:** `React → S3 + CloudFront`  
+  Fast, scalable static hosting with global CDN and HTTPS support.
+
+- **Backend:** `Node.js → EC2 Auto Scaling + ALB`  
+  Handles API requests securely, automatically scales across multiple availability zones.
+
+- **Database:** `PostgreSQL → Amazon RDS`  
+  Managed, highly available, and isolated in private subnets for security.
+
+- **Provisioning:** `Terraform`  
+  Infrastructure as Code for automated, repeatable, and version-controlled deployments.
+
+**Benefits:** Secure, scalable, maintainable, and production-ready.
+
+
+## 🚀 Getting Started (Clone & Run the Project)
+
+
+Clone the repository
+```bash
+$ git clone https://github.com/rootgh-home/3-Tier-Production-Architecture-on-AWS-Using-Terraform.git
+$ cd 3-Tier-Production-Architecture-on-AWS-Using-Terraform
+$ cd frontend
+$ npm install
+$ npm run dev
+```
+
+Output:
+```text
+VITE v7.2.4  ready in 5145 ms
+Local: http://localhost:5173/
+```
+
+<img width="1903" height="936" alt="localhost" src="https://github.com/user-attachments/assets/eee6ccc0-a9bc-4d3e-8e89-5fc529ab34f1" />
+
+
+
+
+#### Server
+
+```bash
+$ cd backend
+$ npm install
+$ npm start
+```
+
+> **Note:**  
+> Running the backend locally without PostgreSQL will result in a connection error.  
+> This project is designed to run the backend on EC2, where it connects securely to  
+> Amazon RDS within the same VPC.
+
+
+
+Workaround: Run Backend Locally with Local PostgreSQL (Dev Only)
+
+```bash
+$ sudo apt update
+$ sudo apt install postgresql postgresql-contrib
+```
+
+
+-- Create database
+```bash
+$ CREATE DATABASE ecommerce;
+```
+
+-- Create user with password
+```bash
+$ CREATE USER ecommerce_user WITH PASSWORD 'password';
+```
+
+-- Grant privileges to user
+```bash
+$ GRANT ALL PRIVILEGES ON DATABASE ecommerce TO ecommerce_user;
+```
+
+-- Exit PostgreSQL
+```bash
+$ \q
+```
+
+Create backend .env
+```bash
+$ touch .env
+```
+
+- DB_USER=postgres
+- DB_PASSWORD=******
+- DB_HOST=localhost
+- DB_PORT=5432
+- DB_NAME=ecommerce_db
+- JWT_SECRET=supersecretkey
+- PORT=3000
+
+```bash
+$ npm install
+$ npm start
+```
+
+
+## 🚀 Infrastructure Deployment (Terraform)
+
+Apply the infrastructure
+```bash
+$ cd terraform
+$ terraform apply
+```
+
+🔐 Database password prompt (Expected behavior)
+
+During terraform apply, Terraform will prompt for the database password:
+Acquiring state lock. This may take a few moments...
+
+var.db_password
+  Enter a value:
+
+
+
+✅ This is intentional
+✅ Secrets are not hardcoded in the repository
+✅ Aligns with Terraform & AWS security best practices
+
+Enter a strong password when prompted.
+
+
+<img width="1464" height="802" alt="terraform" src="https://github.com/user-attachments/assets/34918945-dee9-4930-bce9-32167f9ecabc" />
+
+Review the plan and type:
+
+  yes
+
+Apply complete! Resources: 32 added, 0 changed, 0 destroyed.
+
+
+## Architecture
 
 <img width="1709" height="1067" alt="3 Tier architecture drawio" src="https://github.com/user-attachments/assets/a6c76915-083c-41c4-8a94-416e8a6535b5" />
 
@@ -107,3 +252,8 @@ The Application Tier consists of Node.js backend servers running on EC2 instance
 - Access via AWS Systems Manager Session Manager:
 
 <img width="1849" height="968" alt="Screenshot from 2025-12-25 03-45-02" src="https://github.com/user-attachments/assets/c3cab041-edb2-4c5b-8e8c-3e8745259d1e" />
+
+
+## 🛠️ Debugging & Common Issues
+
+This section documents expected behaviors, common errors, and their resolutions when running the project locally and in AWS.
