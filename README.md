@@ -139,9 +139,9 @@ var.db_password
 
 
 
-✅ This is intentional
-✅ Secrets are not hardcoded in the repository
-✅ Aligns with Terraform & AWS security best practices
+-  This is intentional
+-  Secrets are not hardcoded in the repository
+-  Aligns with Terraform & AWS security best practices
 
 Enter a strong password when prompted.
 
