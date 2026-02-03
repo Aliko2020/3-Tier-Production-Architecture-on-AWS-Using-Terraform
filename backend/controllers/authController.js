@@ -6,7 +6,7 @@ import dotenv from "dotenv";
 dotenv.config();
 const JWT_SECRET = process.env.JWT_SECRET || "supersecretkey";
 
-// Register User
+
 export const register = async (req, res) => {
     const { username, email, password } = req.body;
 
@@ -14,7 +14,6 @@ export const register = async (req, res) => {
         return res.status(400).json({ message: "All fields are required" });
 
     try {
-        // Corrected code
         const existingUser = await pool.query(
             "SELECT * FROM users WHERE email = $1",
             [email]
@@ -36,7 +35,7 @@ export const register = async (req, res) => {
     }
 };
 
-// Login User
+
 export const login = async (req, res) => {
   const { email, password } = req.body;
 
