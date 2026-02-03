@@ -21,18 +21,13 @@ const Navbar = () => {
     <nav className="border-b">
       <div className="flex justify-between items-center mx-auto w-full max-w-screen-xl px-0 sm:px-6 lg:px-4 py-4">
         <div className="hidden lg:block cursor-pointer">
-          <Link to="/">
-            <img
-              className="max-w-20"
-              src="/images/logo.webp"
-              alt="computer and accessories logo png image"
-              loading="lazy"
-            />
+          <Link className="font-semibold text-gray-600" to="/">
+            CompuGh
           </Link>
         </div>
         <div className="flex items-center space-x-4">
           <button
-            className="lg:hidden text-gray-800"
+            className="lg:hidden"
             onClick={() => setMenuOpen(!menuOpen)}
           >
             {menuOpen ? <X size={26} /> : <Menu size={26} />}
