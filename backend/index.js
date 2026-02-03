@@ -3,7 +3,8 @@ import dotenv from "dotenv";
 import cors from "cors"; 
 import authRoutes from "./routes/authRoutes.js";
 import systemRoutes from "./routes/system.routes.js";
-import pool from "./db.js";
+import uploadRoutes from "./routes/uploadRoutes.js";
+import pool from "./config/db.js";
 
 
 dotenv.config();
@@ -13,8 +14,10 @@ app.use(cors({ origin: true, credentials: true,}));
 app.use(express.json());
 
 //routes
-app.use("/api/v1/auth", authRoutes);
 app.use("/", systemRoutes);
+app.use("/api/v1/auth", authRoutes);
+app.use("/api/v1/images", uploadRoutes);
+
 
 // health check
 app.get("/health", (req, res) => {
