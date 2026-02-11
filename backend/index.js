@@ -3,7 +3,7 @@ import dotenv from "dotenv";
 import cors from "cors"; 
 import authRoutes from "./routes/authRoutes.js";
 import systemRoutes from "./routes/system.routes.js";
-import uploadRoutes from "./routes/uploadRoutes.js";
+// import uploadRoutes from "./routes/uploadRoutes.js";
 import pool from "./config/db.js";
 
 
@@ -16,7 +16,7 @@ app.use(express.json());
 //routes
 app.use("/", systemRoutes);
 app.use("/api/v1/auth", authRoutes);
-app.use("/api/v1/images", uploadRoutes);
+// app.use("/api/v1/images", uploadRoutes);
 
 
 // health check
