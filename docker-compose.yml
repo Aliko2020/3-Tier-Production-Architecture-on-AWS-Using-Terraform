@@ -1,4 +1,12 @@
 services:
+  client:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    environment:
+      - NODE_ENV=production
+    ports:
+      - 8080:8080
   app:
     build:
       context: ./backend
@@ -6,9 +14,11 @@ services:
     ports:
       - "3000:3000"
     depends_on:
-      - db
+      db:
+        condition: service_healthy
     env_file:
       - .env
+    command: sh -c "npx knex migrate:latest --knexfile knexfile.cjs && npm start"
     networks:
       - ecommerce
 
@@ -23,6 +33,12 @@ services:
       - "5433:5432"
     networks:
       - ecommerce
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${DB_USER}"]
+      interval: 1m30s
+      timeout: 30s
+      retries: 5
+      start_period: 30s
 
 networks:
   ecommerce:
