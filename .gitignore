@@ -1,5 +1,6 @@
 .env
 
+
 terraform/terraform.tfstate
 terraform/terraform.tfstate.backup
 terraform/*.tfstate
@@ -8,6 +9,7 @@ terraform/*.tfstate.*
 backend/node_modules
 backend/.env
 frontend/node_modules
+frontend/.env
 
 # Crash logs
 terraform/crash.log

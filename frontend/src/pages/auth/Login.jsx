@@ -1,99 +1,92 @@
-import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 import { loginUser } from "../../api/authApi";
+import { toast } from "react-toastify";
+import { useFormik } from "formik";
+import { loginFormConfig } from "../../config/formikConfig";
+import FormInput from "../../components/FormInput";
+import { useState } from "react";
+
 
 const Login = () => {
-    const navigate = useNavigate();
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
-    const [showPassword, setShowPassword] = useState(false);
+  const navigate = useNavigate();
+  const [showPassword, setShowPassword] = useState(false);
 
-    const handleSubmit = async (e) => {
-        e.preventDefault();
+  const formik = useFormik({
+    ...loginFormConfig,
+    onSubmit: async (values, { setSubmitting }) => {
+      try {
+        const data = await loginUser(values.email, values.password);
+        if (!data?.token) throw new Error("Authentication failed");
 
-        try {
-            const data = await loginUser(email, password);
-            localStorage.setItem("token", data.token);
-            localStorage.setItem("user", JSON.stringify({ email }));
-            navigate("/userdashboard");
-        } catch (err) {
-            alert(err.message);
-        }
-    };
+        localStorage.setItem("token", data.token);
+        localStorage.setItem("user", JSON.stringify({ email: values.email }));
 
-    return (
-        <div className="min-h-screen flex justify-center">
-            <div className="w-full max-w-md p-8 mt-4 bg-white rounded-lg shadow-sm">
-                <h1 className="text-lg font-bold text-gray-700 mb-6 flex items-center gap-2">
-                    Login
-                </h1>
+        toast.success("Login successful!", { position: "bottom-right" });
+        navigate("/userdashboard");
+      } catch (err) {
+        toast.error(err?.response?.data?.message || err.message || "Login failed", {
+          position: "bottom-right",
+        });
+      } finally {
+        setSubmitting(false);
+      }
+    },
+  });
 
-                <form onSubmit={handleSubmit} className="space-y-4 max-w-xs">
-                    {/* Email */}
-                    <div>
-                        <label className="block text-gray-700 text-sm font-medium mb-1">
-                            Email
-                        </label>
-                        <input
-                            type="email"
-                            value={email}
-                            onChange={(e) => setEmail(e.target.value)}
-                            placeholder="Johnsmith@gmail.com"
-                            required
-                            className="w-full px-4 py-2 mt-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"
-                        />
-                    </div>
+  return (
+    <div className="min-h-screen flex justify-center text-gray-700">
+      <form
+        onSubmit={formik.handleSubmit}
+        className="w-full max-w-sm p-8 space-y-4 rounded-lg"
+      >
+        <h1 className="text-xl font-semibold mb-8">Login</h1>
 
-                    {/* Password with toggle */}
-                    <div>
-                        <label className="block text-gray-700 text-sm font-medium mb-1">
-                            Password
-                        </label>
-                        <div className="relative">
-                            <input
-                                type={showPassword ? "text" : "password"}
-                                value={password}
-                                onChange={(e) => setPassword(e.target.value)}
-                                required
-                                className="w-full px-4 py-2 mt-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 pr-10"
-                            />
-                            <button
-                                type="button"
-                                onClick={() => setShowPassword(!showPassword)}
-                                className="absolute right-3 top-1/2 mt-1 transform -translate-y-1/2 text-gray-500 hover:text-gray-700 focus:outline-none"
-                            >
-                                {showPassword ? (
-                                    <AiOutlineEye size={20} />
-                                ) : (
-                                    <AiOutlineEyeInvisible size={20} />
-                                )}
-                            </button>
-                        </div>
-                    </div>
+        <FormInput
+          label="Email"
+          name="email"
+          type="email"
+          placeholder="john@example.com"
+          value={formik.values.email}
+          onChange={formik.handleChange}
+          onBlur={formik.handleBlur}
+          error={formik.touched.email && formik.errors.email}
+        />
 
-                    <div className="flex flex-col justify-center items-center gap-4 mt-4">
-                        <button
-                            type="submit"
-                            className="px-6 py-3 bg-green-600 text-white rounded-lg hover:bg-green-700 transition w-full"
-                        >
-                            Login
-                        </button>
+        <FormInput
+          label="Password"
+          name="password"
+          type={showPassword ? "text" : "password"}
+          placeholder="Enter password"
+          value={formik.values.password}
+          onChange={formik.handleChange}
+          onBlur={formik.handleBlur}
+          error={formik.touched.password && formik.errors.password}
+          showPasswordToggle
+          togglePassword={() => setShowPassword(!showPassword)}
+        />
 
-                        <p className="text-sm text-gray-500 text-center">
-                            Don't have an account?{" "}
-                            <span
-                                onClick={() => navigate("/register")}
-                                className="text-green-600 cursor-pointer hover:underline"
-                            >
-                                Register
-                            </span>
-                        </p>
-                    </div>
-                </form>
-            </div>
-        </div>
-    );
+        <button
+          type="submit"
+          disabled={formik.isSubmitting}
+          className={`w-full py-2 rounded-lg text-white ${
+            formik.isSubmitting ? "bg-green-400 cursor-not-allowed" : "bg-green-600 hover:bg-green-700"
+          }`}
+        >
+          {formik.isSubmitting ? "Logging in..." : "Login"}
+        </button>
+
+        <p className="text-sm">
+          Don't have an account?{" "}
+          <span
+            onClick={() => navigate("/register")}
+            className="text-green-600 cursor-pointer"
+          >
+            Register
+          </span>
+        </p>
+      </form>
+    </div>
+  );
 };
 
 export default Login;
