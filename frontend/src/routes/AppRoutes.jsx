@@ -14,9 +14,10 @@ const Accessories = lazy(() => import("@/pages/products/Accessories"));
 const ProductDetail = lazy(() => import("@/pages/products/ProductDetail"));
 
 import Login from "@/pages/auth/Login";
-import SignUp from "@/pages/auth/SignUp";
+import Register from "@/pages/auth/Register";
 import UserDashboard from "@/pages/dashboards/UserDashboard";
 import Checkout from "@/pages/checkout/Checkout";
+
 
 const AppRoutes = () => {
   return (
@@ -25,7 +26,7 @@ const AppRoutes = () => {
         <Route path="/" element={<Layout />}>
           <Route index element={<Home />} />
           <Route path="login" element={<Login />} />
-          <Route path="register" element={<SignUp />} />
+          <Route path="register" element={<Register />} />
 
           <Route path="product/:id" element={<ProductDetail />} />
           <Route path="laptops" element={<Laptops />} />
