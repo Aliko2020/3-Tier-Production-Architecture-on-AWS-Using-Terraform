@@ -20,7 +20,7 @@ const SearchBar = () => {
       <div className="absolute inset-0 bg-black/5 rounded-b-2xl" />
 
       <div className="relative max-w-4xl mx-auto text-center text-white">
-        <h2 className="text-xl text-black/50 font-semibold mb-6">
+        <h2 className="text-black/50 mb-6">
           What are you looking for?
         </h2>
 

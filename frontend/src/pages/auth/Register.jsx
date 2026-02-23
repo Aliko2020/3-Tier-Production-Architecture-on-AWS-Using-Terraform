@@ -36,17 +36,17 @@ const Register = () => {
   });
 
   return (
-    <div className="min-h-screen flex justify-center  text-gray-700">
+    <div className="min-h-screen flex justify-center  text-gray-500">
       <form
         onSubmit={formik.handleSubmit}
-        className="w-full max-w-md p-8 space-y-4  rounded-lg"
+        className="w-full max-w-md p-4 space-y-4 rounded-lg"
       >
         <h1 className="text-xl font-bold mb-8">Register</h1>
 
         <FormInput
           label="Username"
           name="username"
-          placeholder="JohnSmith"
+          placeholder="Amos Aliko"
           value={formik.values.username}
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}
@@ -57,7 +57,7 @@ const Register = () => {
           label="Email"
           name="email"
           type="email"
-          placeholder="johnsmith@gmail.com"
+          placeholder="alikoamos7@gmail.com"
           value={formik.values.email}
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}
@@ -93,7 +93,7 @@ const Register = () => {
           )}
         </button>
 
-        <p className="text-sm text-center mt-4">
+        <p className="text-sm mt-4">
           Already have an account?{" "}
           <span
             onClick={() => navigate("/login")}

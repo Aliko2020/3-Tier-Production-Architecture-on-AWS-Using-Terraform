@@ -19,7 +19,7 @@ const MobileSidebar = ({ navLinks, menuOpen, setMenuOpen }) => {
     >
       
       <div className="flex justify-between items-center px-4 py-1 border-b mt-5">
-        <h2 className="text-lg text-gray-700 font-semibold">Menu</h2>
+        <h2 className="text-lg text-gray-500 font-semibold">Menu</h2>
         <button onClick={() => setMenuOpen(false)}>
           <X size={22} />
         </button>

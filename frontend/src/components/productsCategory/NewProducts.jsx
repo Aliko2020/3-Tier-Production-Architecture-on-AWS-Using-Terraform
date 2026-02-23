@@ -5,7 +5,7 @@ import products from "@/data/newproducts";
 const BrandNewProducts = () => {
   return (
     <section className="py-8 px-5">
-      <h2 className="font-simibold text-gray-500 mb-8">
+      <h2 className="font-bold text-gray-500 mb-8">
        New Products
       </h2>
 
