@@ -1,4 +1,4 @@
-import SearchBar from "@/components/search/SearchBar";
+import SearchBar from "@/components/filters/SearchBar";
 import CategorySection from "@/components/productsCategory/CategorySection";
 import NewProducts from "@/components/productsCategory/NewProducts";
 import DiscountSale from "@/components/common/DiscountSale";

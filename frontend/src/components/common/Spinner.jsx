@@ -1,9 +1,9 @@
 import { RotatingLines } from "react-loader-spinner";
 
 const Spinner = ({
-  height = 80,
-  width = 80,
-  color = "grey",
+  height = 40,
+  width = 40,
+  color = "gray",
   strokeWidth = 5,
   animationDuration = 0.75,
 }) => {

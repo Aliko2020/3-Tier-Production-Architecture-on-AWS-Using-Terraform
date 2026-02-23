@@ -3,7 +3,7 @@ import { lazy, Suspense } from "react";
 
 import Layout from "@/layouts/Layout";
 import ProtectedRoute from "@/components/common/ProtectedRoute";
-import Spinner from "@/components/common/Spinner"; 
+import Spinner from "@/components/common/Spinner";
 
 /* Lazy-loaded pages */
 const Home = lazy(() => import("@/pages/home/Home"));
@@ -17,7 +17,6 @@ import Login from "@/pages/auth/Login";
 import Register from "@/pages/auth/Register";
 import UserDashboard from "@/pages/dashboards/UserDashboard";
 import Checkout from "@/pages/checkout/Checkout";
-
 
 const AppRoutes = () => {
   return (
@@ -38,12 +37,12 @@ const AppRoutes = () => {
             path="userdashboard"
             element={
               <ProtectedRoute>
-                <UserDashboard />
+                {" "}
+                <UserDashboard />{" "}
               </ProtectedRoute>
             }
           />
           <Route
-            path="checkout"
             element={
               <ProtectedRoute>
                 <Checkout />

@@ -1,8 +1,10 @@
 import { useEffect, useState } from "react";
 import { Navigate } from "react-router-dom";
 import axios from "axios";
+import Spinner from "./Spinner"
 
 const ProtectedRoute = ({ children }) => {
+    const API_URL = import.meta.env.VITE_API_URL || "http://localhost:3000/api/v1/auth";
     const [loading, setLoading] = useState(true);
     const [isAuth, setIsAuth] = useState(false);
 
@@ -15,7 +17,7 @@ const ProtectedRoute = ({ children }) => {
         }
 
         axios
-        axios.get("http://44.200.162.125:3000/api/auth/verify", {
+        axios.get(`${API_URL}/auth/verify`, {
             headers: { Authorization: `Bearer ${token}` },
         })
 
@@ -26,7 +28,7 @@ const ProtectedRoute = ({ children }) => {
             .finally(() => setLoading(false));
     }, []);
 
-    if (loading) return <p>Loading...</p>;
+    if (loading) return <Spinner />;
     if (!isAuth) return <Navigate to="/login" replace />;
 
     return children;

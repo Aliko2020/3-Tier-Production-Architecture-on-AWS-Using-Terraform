@@ -1,15 +1,12 @@
 const newproducts = [
   {
     id: "ACC291",
-    name: "Apple 2024 MacBook Pro",
+    name: "HP Pavilion Desktop",
     price: 13150,
-    category: "Laptop",
-    image: "/images/mac3.webp",
+    category: "Desktops",
+    image: "/images/desktop.webp",
     images: [
-      "/images/mac3.webp",
-      "/images/mac.jpg",
-      "/images/mac2.webp",
-      "/images/mac4.webp",
+      "/images/desktop.webp",
     ],
     rating: 5,
     color: [
@@ -33,11 +30,11 @@ Brand New in Box 📦`,
   },
   {
     id: "ACC277",
-    name: "Hp Webcam",
+    name: "Apple Magic Keyboard",
     price: 490.0,
     category: "Accessories",
-    image: "/images/accessories3.webp",
-    images: ["/images/micro4.webp", "/images/micro2.webp", "/images/micro3.webp"],
+    image: "/images/keyboard.jpeg",
+    images:  ["/images/key2.jpeg", "/images/key3.jpeg"],
     rating: 5,
     color: [
       { name: "Platinum", value: "platinum" },

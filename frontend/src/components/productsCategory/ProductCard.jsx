@@ -8,7 +8,7 @@ const ProductCard = ({ product, category }) => {
     <Link
       to={`/product/${product.id}`}
       state={{ product }}
-      className="group border text-gray-500 rounded-lg overflow-hidden hover:shadow-sm transition-shadow duration-300"
+      className="group border text-gray-500 rounded-lg overflow-hidden transition-shadow duration-300"
     >
       <div className="relative w-full h-52  overflow-hidden">
         {!loaded && (
@@ -31,7 +31,7 @@ const ProductCard = ({ product, category }) => {
 
         <h3 className="mt-2 line-clamp-2">{product.name}</h3>
 
-        <p className="text-red-500 font-bold mt-2">
+        <p className="text-orange-500 font-bold mt-2">
           GHC {product.price.toFixed(2)}
         </p>
 
