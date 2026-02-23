@@ -14,8 +14,10 @@ const Register = () => {
     ...registerFormConfig,
     onSubmit: async (values, { setSubmitting }) => {
       try {
-        await registerUser(values.name, values.email, values.password);
+        await registerUser(values.username, values.email, values.password);
 
+        console.log(values.username, values.email, values.password);
+        
         toast.success("Registration successful!", {
           position: "bottom-right",
           autoClose: 2000,
@@ -42,13 +44,13 @@ const Register = () => {
         <h1 className="text-xl font-bold mb-8">Register</h1>
 
         <FormInput
-          label="Full Name"
-          name="name"
-          placeholder="John Smith"
-          value={formik.values.name}
+          label="Username"
+          name="username"
+          placeholder="JohnSmith"
+          value={formik.values.username}
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}
-          error={formik.touched.name && formik.errors.name}
+          error={formik.touched.username && formik.errors.username}
         />
 
         <FormInput

@@ -1,6 +1,5 @@
 import axios from "axios";
 
-
 const API_URL = import.meta.env.VITE_API_URL || "http://localhost:3000/api/v1/auth";
 
 const axiosInstance = axios.create({
@@ -18,9 +17,13 @@ export const loginUser = async (email, password) => {
   }
 };
 
-export const registerUser = async (name, email, password) => {
+export const registerUser = async (username, email, password) => {
   try {
-    const response = await axiosInstance.post("/register", { name, email, password });
+    const response = await axiosInstance.post("/register", {
+      username,
+      email,
+      password,
+    });
     return response.data;
   } catch (err) {
     throw err.response?.data || { message: "Server error" };

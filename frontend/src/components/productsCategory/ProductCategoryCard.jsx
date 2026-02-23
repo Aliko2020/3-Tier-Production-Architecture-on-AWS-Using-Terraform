@@ -8,7 +8,7 @@ export const ProductCategoryCard = ({ title, image, path }) => {
   return (
     <NavLink
       to={path}
-      className="relative group border overflow-hidden rounded-lg hover:shadow-md transition-shadow duration-300 min-w-[260px] min-h-[340px]"
+      className="relative group border overflow-hidden rounded-lg hover:shadow-md transition-shadow duration-300 min-w-64 min-h-80"
     >
 
       <div className="relative w-full h-64 overflow-hidden">
@@ -30,13 +30,13 @@ export const ProductCategoryCard = ({ title, image, path }) => {
       <div className="absolute top-0 left-0 w-0 h-0 border-t-[120px] border-t-black/10 border-r-[120px] border-r-transparent" />
 
       <div className="p-4">
-        <h3 className="text-lg font-bold leading-tight">
+        <h3 className="font-simibold leading-tight">
           {title.split(" ")[0]}
           {title.split(" ")[1] && <br />}
           <span>{title.split(" ")[1]}</span>
         </h3>
 
-        <span className="inline-flex items-center mt-2 text-sm font-semibold hover:text-orange-700">
+        <span className="inline-flex items-center mt-2 text-sm font-semibold text-orange-500">
           SHOP <ArrowRight size={14} className="ml-1" />
         </span>
       </div>

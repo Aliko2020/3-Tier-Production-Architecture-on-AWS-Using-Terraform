@@ -9,9 +9,7 @@ const Desktops = () => {
       <div className="max-w-7xl mx-auto">
         
         <div className="mb-8">
-          <h1 className="text-gray-500 font-semibold">
-            Desktops
-          </h1>
+          <h1 className="font-simibold text-gray-700">Desktop</h1>
         </div>
 
     

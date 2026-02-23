@@ -25,32 +25,7 @@ Brand New in Box 📦`,
     },
   ],
 },
-  {
-    id: "LAP001",
-    name: "Apple 2024 MacBook Pro 14-inch M3",
-    brand: "Apple",
-    price: 13150,
-    image: "/images/mac3.webp",
-    images: ["/images/mac3.webp", "/images/mac2.webp", "/images/mac3.webp"],
-    rating: 5,
-    color: [
-      { name: "Silver", value: "silver" },
-      { name: "Space Gray", value: "space-gray" },
-    ],
-    specs: [
-      {
-        label: "Apple 2024 MacBook Pro 14-inch M3",
-        cpu: `Apple M3 Chip
-16GB RAM
-1TB SSD Storage
-14-inch Retina Display
-macOS Sonoma
-WiFi 6E and Bluetooth 5.3
-Backlit Keyboard
-Brand New in Box 📦`,
-      },
-    ],
-  },
+  
   {
     id: "LAP002",
     name: "Microsoft Surface Laptop 6",
@@ -124,6 +99,32 @@ Brand New in Box 📦`,
 13.4-inch OLED Display
 Windows 11 Pro
 WiFi 6E and Bluetooth
+Brand New in Box 📦`,
+      },
+    ],
+  },
+  {
+    id: "LAP001",
+    name: "Apple 2024 MacBook Pro 14-inch M3",
+    brand: "Apple",
+    price: 13150,
+    image: "/images/mac3.webp",
+    images: ["/images/mac3.webp", "/images/mac2.webp", "/images/mac3.webp"],
+    rating: 5,
+    color: [
+      { name: "Silver", value: "silver" },
+      { name: "Space Gray", value: "space-gray" },
+    ],
+    specs: [
+      {
+        label: "Apple 2024 MacBook Pro 14-inch M3",
+        cpu: `Apple M3 Chip
+16GB RAM
+1TB SSD Storage
+14-inch Retina Display
+macOS Sonoma
+WiFi 6E and Bluetooth 5.3
+Backlit Keyboard
 Brand New in Box 📦`,
       },
     ],

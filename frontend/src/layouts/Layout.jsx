@@ -1,5 +1,5 @@
-import Footer from "../components/footer/Footer";
-import Navbar  from "../components/navbar/Navbar";
+import Footer from "@/components/footer/Footer";
+import Navbar  from "@/components/navbar/Navbar";
 import { Outlet } from "react-router-dom";
 
 const Layout = () => {
@@ -17,7 +17,7 @@ const Layout = () => {
         </div>
       </main>
 
-      <footer className="text-gray-300 text-center py-4">
+      <footer className="text-center py-4">
         <div className="mx-auto w-full max-w-screen-xl px-4 sm:px-6 lg:px-8">
           <Footer />
         </div>

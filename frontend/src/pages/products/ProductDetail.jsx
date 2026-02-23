@@ -83,7 +83,7 @@ const ProductDetail = () => {
                 >
                   <span>{color.name}</span>
                   {selectedColor === color.value && (
-                    <span className="text-gray-500 text-lg">●</span>
+                    <span className="text-gray-700 text-lg">●</span>
                   )}
                 </button>
               ))}

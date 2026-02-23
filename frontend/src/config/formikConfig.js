@@ -19,28 +19,27 @@ export const loginFormConfig = {
 };
 
 
-
 export const registerFormConfig = {
   initialValues: {
-    name: "",
+    username: "",  
     email: "",
     password: "",
   },
 
   validationSchema: Yup.object({
-    name: Yup.string()
-      .min(3, "Must be at least 3 characters")
-      .required("Name is required"),
+    username: Yup.string()
+      .min(3, "Enter a valid username")
+      .required("Username is required"),
 
     email: Yup.string()
-      .email("Enter a valid email address")
+      .email("Invalid email address")
       .required("Email is required"),
 
     password: Yup.string()
-      .min(6, "Must be at least 6 characters")
+      .min(6, "Weak password")
       .matches(
         /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)/,
-        "Must contain uppercase, lowercase, and a number"
+        "Must contain uppercase, lowercase and number"
       )
       .required("Password is required"),
   }),
