@@ -1,20 +1,22 @@
+import { useState } from "react";
 import ProductCard from "../../components/productsCategory/ProductCard";
-import desktops from "../../data/desktops"; 
+import desktops from "../../data/desktops";
+import Filter from "../../components/filters/Filter";
 
 const Desktops = () => {
-  const displayedDesktops = desktops.slice(0, 5);
+  const [filteredDesktops, setFilteredDesktops] = useState(desktops);
 
   return (
     <section className="px-5">
       <div className="max-w-7xl mx-auto">
-        
-        <div className="mb-8">
-          <h1 className="font-simibold text-gray-700">Desktop</h1>
-        </div>
 
-    
+        <Filter
+          products={desktops}
+          onFilter={setFilteredDesktops}
+        />
+
         <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-5">
-          {displayedDesktops.map((desktop) => (
+          {filteredDesktops.map((desktop) => (
             <ProductCard
               key={desktop.id}
               product={desktop}
@@ -22,6 +24,7 @@ const Desktops = () => {
             />
           ))}
         </div>
+
       </div>
     </section>
   );
