@@ -10,7 +10,7 @@ const FormInput = ({
 }) => {
   return (
     <div className="mb-4 relative">
-      <label className="block text-sm font-medium mb-4">{label}</label>
+      <label className="block text-sm  font-medium mb-4">{label}</label>
       <input
         type={type}
         name={name}

@@ -37,13 +37,13 @@ const Filter = ({ products, onFilter }) => {
   return (
     <div className="py-4 space-y-4 mb-8">
       
-      <div className="flex text-sm rounded-md max-w-sm text-gray-400 flex-row gap-2">
-        <div className="flex items-center hover:scale-105">
-          <CiFilter size={30} />
+      <div className="flex text-sm p-1 max-w-sm text-gray-400 flex-row gap-2">
+        <div className="flex items-center p-2 mt-1 border rounded-md">
+          <CiFilter size={20} />
           <select
             value={selectedBrand}
             onChange={(e) => setSelectedBrand(e.target.value)}
-            className="bg-white py-2 focus:outline-none"
+            className="bg-white focus:outline-none"
           >
             <option value="">All Brands</option>
             {brands.map((brand) => (
@@ -54,23 +54,23 @@ const Filter = ({ products, onFilter }) => {
           </select>
         </div>
 
-        <div className="hover:scale-105">
+        <div className="">
           <input
             type="number"
             value={minPrice}
             onChange={(e) => setMinPrice(e.target.value)}
-            className="max-w-24 p-2 focus:outline-none border rounded-md"
-            placeholder="Mini price"
+            className="max-w-16 p-2 mt-1 border rounded-md focus:outline-none"
+            placeholder="Min"
           />
         </div>
 
-        <div className="hover:scale-105">
+        <div className="">
           <input
             type="number"
             value={maxPrice}
             onChange={(e) => setMaxPrice(e.target.value)}
-            className="max-w-24 p-2 focus:outline-none border rounded-md"
-            placeholder="Maxi price"
+            className="max-w-16 p-2 mt-1 border rounded-md focus:outline-none"
+            placeholder="Max"
           />
         </div>
 

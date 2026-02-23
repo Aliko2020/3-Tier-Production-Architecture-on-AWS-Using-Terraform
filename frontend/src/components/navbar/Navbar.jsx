@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import { ShoppingCart, Menu, X, User } from "lucide-react";
+import { FiShoppingBag } from "react-icons/fi";
 import MobileSidebar from "./MobileSidebar";
 
 const Navbar = () => {
@@ -19,7 +20,7 @@ const Navbar = () => {
 
   return (
     <nav className="border-b">
-      <div className="flex justify-between items-center mx-auto w-full max-w-screen-xl px-0 sm:px-6 lg:px-4 py-4">
+      <div className="flex justify-between items-center mx-auto w-full max-w-screen-xl sm:px-6 lg:px-4 py-6 px-4">
         <div className="hidden lg:block cursor-pointer">
           <Link className="font-semibold text-gray-600" to="/">
             CompuGh
@@ -55,7 +56,7 @@ const Navbar = () => {
 
         <div className="flex items-center space-x-6">
           <div className="relative cursor-pointer">
-            <ShoppingCart className="w-6 h-6 text-black" />
+            <FiShoppingBag className="w-6 h-6 text-black" />
             <span className="absolute -top-2 -right-3 bg-orange-500 text-white text-xs font-bold rounded-full w-5 h-5 flex items-center justify-center">
               0
             </span>
@@ -74,7 +75,7 @@ const Navbar = () => {
               </Link>
             </div>
           ) : (
-            <div className="hidden lg:flex items-center space-x-4">
+            <div className="lg:flex items-center space-x-4">
               <button
                 onClick={() => navigate("/userdashboard")}
                 className="flex items-center"

@@ -31,7 +31,7 @@ const ProductCard = ({ product, category }) => {
 
         <h3 className="mt-2 line-clamp-2">{product.name}</h3>
 
-        <p className="text-orange-500 font-bold mt-2">
+        <p className="text-orange-500 mt-2">
           GHC {product.price.toFixed(2)}
         </p>
 
