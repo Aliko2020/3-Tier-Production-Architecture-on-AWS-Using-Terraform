@@ -38,7 +38,7 @@ const Filter = ({ products, onFilter }) => {
     <div className="py-4 space-y-4 mb-8">
       
       <div className="flex text-sm p-1 max-w-sm text-gray-400 flex-row gap-2">
-        <div className="flex items-center p-2 mt-1 border rounded-md">
+        <div className="flex items-center p-2 mt-1">
           <CiFilter size={20} />
           <select
             value={selectedBrand}
@@ -59,8 +59,8 @@ const Filter = ({ products, onFilter }) => {
             type="number"
             value={minPrice}
             onChange={(e) => setMinPrice(e.target.value)}
-            className="max-w-16 p-2 mt-1 border rounded-md focus:outline-none"
-            placeholder="Min"
+            className="max-w-16 p-2 mt-1 focus:outline-none"
+            placeholder="From"
           />
         </div>
 
@@ -69,8 +69,8 @@ const Filter = ({ products, onFilter }) => {
             type="number"
             value={maxPrice}
             onChange={(e) => setMaxPrice(e.target.value)}
-            className="max-w-16 p-2 mt-1 border rounded-md focus:outline-none"
-            placeholder="Max"
+            className="max-w-16 p-2 mt-1 focus:outline-none"
+            placeholder="To"
           />
         </div>
 
