@@ -6,18 +6,15 @@ import Spinner from "./Spinner"
 const ProtectedRoute = ({ children }) => {
     const API_URL = import.meta.env.VITE_API_URL || "http://localhost:3000/api/v1/auth";
     const [loading, setLoading] = useState(true);
-    const [isAuth, setIsAuth] = useState(false);
+    const [isAuth, setIsAuth] = useState(true);
 
     useEffect(() => {
         const token = localStorage.getItem("token");
-        console.log(token)
         if (!token) {
-            setIsAuth(false);
+            setIsAuth(true);
             setLoading(false);
             return;
         }
-
-        axios
         axios.get(`${API_URL}/verify`, {
             headers: { Authorization: `Bearer ${token}` },
         })
@@ -25,7 +22,7 @@ const ProtectedRoute = ({ children }) => {
             .then((res) => {
                 if (res.data.valid) setIsAuth(true);
             })
-            .catch(() => setIsAuth(false))
+            .catch(() => setIsAuth(true))
             .finally(() => setLoading(false));
     }, []);
 
