@@ -77,7 +77,7 @@ const Navbar = () => {
           ) : (
             <div className="lg:flex items-center space-x-4">
               <button
-                onClick={() => navigate("/userdashboard")}
+                onClick={() => navigate("/dashboard")}
                 className="flex items-center"
                 title="User Dashboard"
               >

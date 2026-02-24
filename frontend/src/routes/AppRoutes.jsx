@@ -5,7 +5,7 @@ import Layout from "@/layouts/Layout";
 import ProtectedRoute from "@/components/common/ProtectedRoute";
 import Spinner from "@/components/common/Spinner";
 
-/* Lazy-loaded pages */
+
 const Home = lazy(() => import("@/pages/home/Home"));
 const Discount = lazy(() => import("@/pages/Discount"));
 const Laptops = lazy(() => import("@/pages/products/Laptops"));
@@ -13,9 +13,11 @@ const Desktops = lazy(() => import("@/pages/products/Desktops"));
 const Accessories = lazy(() => import("@/pages/products/Accessories"));
 const ProductDetail = lazy(() => import("@/pages/products/ProductDetail"));
 
+/* Dashboard pages */
+const DashboardLayout = lazy(() => import("@/layouts/DashboardLayout"));
+
 import Login from "@/pages/auth/Login";
 import Register from "@/pages/auth/Register";
-import UserDashboard from "@/pages/dashboards/UserDashboard";
 import Checkout from "@/pages/checkout/Checkout";
 
 const AppRoutes = () => {
@@ -34,21 +36,23 @@ const AppRoutes = () => {
           <Route path="discounts" element={<Discount />} />
 
           <Route
-            path="userdashboard"
-            element={
-              <ProtectedRoute>
-                {" "}
-                <UserDashboard />{" "}
-              </ProtectedRoute>
-            }
-          />
-          <Route
+            path="checkout"
             element={
               <ProtectedRoute>
                 <Checkout />
               </ProtectedRoute>
             }
           />
+        </Route>
+
+        <Route
+          path="/dashboard"
+          element={
+            <ProtectedRoute>
+              <DashboardLayout />
+            </ProtectedRoute>
+          }
+        >
         </Route>
       </Routes>
     </Suspense>

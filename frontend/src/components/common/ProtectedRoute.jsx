@@ -10,6 +10,7 @@ const ProtectedRoute = ({ children }) => {
 
     useEffect(() => {
         const token = localStorage.getItem("token");
+        console.log(token)
         if (!token) {
             setIsAuth(false);
             setLoading(false);
@@ -17,7 +18,7 @@ const ProtectedRoute = ({ children }) => {
         }
 
         axios
-        axios.get(`${API_URL}/auth/verify`, {
+        axios.get(`${API_URL}/verify`, {
             headers: { Authorization: `Bearer ${token}` },
         })
 

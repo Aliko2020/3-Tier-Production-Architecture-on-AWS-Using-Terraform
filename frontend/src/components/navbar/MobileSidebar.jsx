@@ -58,7 +58,7 @@ const MobileSidebar = ({ navLinks, menuOpen, setMenuOpen }) => {
           <>
             <button
               onClick={() => {
-                navigate("/userdashboard");
+                navigate("/dashboard");
                 setMenuOpen(false);
               }}
               className="py-3 px-8 text-white bg-blue-500 rounded-md font-medium"
