@@ -1,9 +1,9 @@
 import { useNavigate } from "react-router-dom";
-import { loginUser } from "../../api/authApi";
+import { loginUser } from "@/api/authApi";
 import { toast } from "react-toastify";
 import { useFormik } from "formik";
-import { loginFormConfig } from "../../config/formikConfig";
-import FormInput from "../../components/FormInput";
+import { loginFormConfig } from "@/config/formikConfig";
+import FormInput from "@/components/FormInput";
 import { useState } from "react";
 
 
@@ -22,7 +22,7 @@ const Login = () => {
         localStorage.setItem("user", JSON.stringify({ email: values.email }));
 
         toast.success("Login successful!", { position: "bottom-right" });
-        navigate("/userdashboard");
+        navigate("/dashboard");
       } catch (err) {
         toast.error(err?.response?.data?.message || err.message || "Login failed", {
           position: "bottom-right",
